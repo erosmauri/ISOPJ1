@@ -7,4 +7,4 @@ plugins:
   - jekyll-seo-tag
 
 include:
-  - assets/custom.css
+  - assetscss/custom.css
