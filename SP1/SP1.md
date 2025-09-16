@@ -1,26 +1,48 @@
 # Sprint 1
 
-## Titol
+## Títol
 
 ### Negreta
 
 **Hola**
 
-### Code block
-
-```bash
-text
-```
 
 ### Cursiva
+*Hola en cursiva*
 
-`Cursiva`
+### Cursiva i negreta
+***Hola combinat***
 
-### Task list
+### Subratllat (HTML)
+<u>Subratllat</u>
 
-- [x] Botó seleccionat
-- [ ] No se
+---
+
+## Bloc de codi
+
+### Bash
+```bash
+echo "Hello World"
+ls -la
+```
+
+### Taula
+
+| Nom   | Edat | Ciutat    |
+|-------|------|-----------|
+| Eros  | 19   | Tarragona |
+| Marc  | 31   | Girona    |
+
+### Llista numerada
+1. Primer element
+2. Segon element
+3. Tercer element
+
+### Llista amb punts
+- Element A
+- Element B
+- Element C
 
 ### Imatge
 
-![Alt text](imatges/30b94658f685ffd183c8c442d2973d30.jpg)
+![Imatge 1](imatges/30b94658f685ffd183c8c442d2973d30.jpg)
