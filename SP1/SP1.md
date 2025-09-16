@@ -6,7 +6,6 @@
 
 **Hola**
 
-
 ### Cursiva
 *Hola en cursiva*
 
@@ -21,6 +20,7 @@
 ## Bloc de codi
 
 ### Bash
+
 ```bash
 echo "Hello World"
 ls -la
