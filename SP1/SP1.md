@@ -78,6 +78,7 @@ Crear maquina virtual per instalar un Ubuntu (Particions 80GB, 40GB Ubuntu 40GB 
 
     1. Partició ext4 a l'arrel de 40 GB.
     2. Partició swap de 2 GB. (He creat aquesta partició de swap de 2 GB per tenir un espai extra de memòria virtual i més estabilitat si la RAM s’omple.)
+    3. No he creat la partició home, ja que considero que al ser Ubuntu Desktop per a ús personal, no vull limitar-ho, per amb aixo estan les quotes.
 
 ![Imatge 11](imatges/Virtualització%20i%20instal·lació%20del%20SO%20Ubuntu/Imatge11.png)
 
