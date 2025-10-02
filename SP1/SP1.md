@@ -91,6 +91,83 @@ Crear maquina virtual per instalar un Ubuntu (Particions 80GB, 40GB Ubuntu 40GB 
 Ubuntu és un sistema operatiu lliure i gratuït, basat en GNU/Linux. Està distribuït sota la llicència GNU GPL i altres llicències de codi obert, cosa que permet utilitzar-lo, modificar-lo i redistribuir-lo sense cost. No requereix cap clau de producte ni pagament, i pot emprar-se tant en entorns personals com professionals.
 
 # Gestors d'arrencada per a instal·lacions DUALS
+
+## Pas 1:
+
+* Primerament als paràmetres de la máquina desde el VirtualBox hem d'habilitar la següent opció:
+
+![Imatge 1](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge1.png>)
+
+## Pas 2:
+
+* Fiquem la ISO de Windows 10 Enterprise i arranquem la maquina fins arribar amb aquest punt.
+
+![Imatge 2](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge2.png>)
+
+## Pas 3:
+
+* Aquí a les particions seleccionarem el disc de 40 GB que esta buit i instal·larem el Windows 10 allí.
+
+![Imatge 3](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge3.png>)
+
+## Pas 4:
+
+* I ens esperem a que se instal·li.
+
+![Imatge 4](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge4.png>)
+
+## Pas 5:
+
+* Ara crearem una cuenta de domini a nivell local al Windows.
+
+![Imatge 5](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge5.png>)
+
+## Pas 6:
+
+* I ja tenim Windows 10 instal·lat.
+
+![Imatge 6](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge6.png>)
+
+## Pas 7:
+
+* Ara per recuperar el grub he utilitzat la ISO de Super-Grub2:
+
+![Imatge 7](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge13.png>)
+
+## Pas 8:
+
+* I bootejem desde aquesta ISO.
+
+![Imatge 8](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge14.png>)
+
+## Pas 9:
+
+* Aqui detectarem i visualitzarem els boot menus.
+
+![alt text](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge15.png>)
+
+## Pas 10:
+
+* I hem de buscar el següent:
+    1. Aixo bootejara el Ubuntu directament. 
+
+![alt text](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge16.png>)
+
+## Pas 11:
+
+* Ara que hem pogut arrancar Ubuntu podem arreglar el grub executant les següents comandes:
+
+* sudo grub-install /dev/sda
+* sudo update-grub2
+
+![alt text](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge17.png>)
+
+## Pas 12:
+
+* Fem un reboot i ja veurem el grub per poder bootejar desde el Ubuntu o Windows.
+
+![alt text](<imatges/Gestors d'arrencada per a instal·lacions DUALS/Imatge18.png>)
+
 # Punts de restauració
 # Configuració de la xarxa
 # Comandes generals i instal·lacions
