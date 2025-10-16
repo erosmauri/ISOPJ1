@@ -1,27 +1,73 @@
-/* Background and text */
-body {
-  background-color: #0f111a;  /* Dark background */
-  color: #cfd8dc;             /* Soft gray text */
-  font-family: 'Fira Code', monospace;
+/* ---------------------------
+   Light mode (neutral)
+--------------------------- */
+.md-typeset h1 {
+  color: #555555;
+  border-bottom: 2px solid #777777;
+  padding-bottom: 0.3em;
 }
 
-/* Links */
-a {
-  color: #82aaff;
-}
-a:hover {
-  text-decoration: underline;
+.md-typeset h2 {
+  color: #666666;
+  border-left: 4px solid #888888;
+  padding-left: 0.5em;
 }
 
-/* Code blocks */
-pre, code {
-  background-color: #1e1f2a;
-  color: #f8f8f2;
-  padding: 0.3em 0.5em;
-  border-radius: 4px;
-}
+.md-typeset h3 { color: #777777; }
+.md-typeset h4 { color: #888888; }
+.md-typeset h5 { color: #999999; }
+.md-typeset h6 { color: #aaaaaa; }
 
-/* Headers (optional override) */
-.md-typeset h1, .md-typeset h2, .md-typeset h3 {
-  font-family: 'Fira Code', monospace;
+/* ---------------------------
+   Dark mode (colorful)
+--------------------------- */
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background-color: #0f111a;  /* Dark hacker background */
+    color: #cfd8dc;             /* Soft text */
+  }
+
+  .md-typeset h1 {
+    color: #82aaff;  /* Soft sky blue */
+    border-bottom: 2px solid #82aaff;
+  }
+  
+  .md-typeset h2 {
+    color: #ff7eb6;  /* Gentle pink */
+    border-left: 4px solid #ff7eb6;
+    padding-left: 0.5em;
+  }
+  
+  .md-typeset h3 { color: #ffb86c; }
+  .md-typeset h4 { color: #50fa7b; }
+  .md-typeset h5 { color: #f1fa8c; }
+  .md-typeset h6 { color: #bd93f9; }
+
+  /* Hover effect: subtle glow */
+  .md-typeset h1:hover,
+  .md-typeset h2:hover,
+  .md-typeset h3:hover,
+  .md-typeset h4:hover,
+  .md-typeset h5:hover,
+  .md-typeset h6:hover {
+    filter: brightness(1.2);
+    text-shadow: 0 0 8px currentColor;
+    transition: all 0.4s ease;
+  }
+
+  /* Code blocks */
+  pre, code {
+    background-color: #1e1f2a;
+    color: #f8f8f2;
+    padding: 0.3em 0.5em;
+    border-radius: 4px;
+  }
+
+  a {
+    color: #82aaff;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
