@@ -1,36 +1,27 @@
 <!DOCTYPE html>
-<html lang="ca">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ page.title | default: site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assetscss/extra.css' | relative_url }}">
-    <link rel="icon" href="{{ '/assetscss/favicon-32x32.png' | relative_url }}" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container">
-        <h1 class="site-title">
-          🔒 {{ site.title }}
-        </h1>
-        <nav class="site-nav">
-          <a href="{{ '/' | relative_url }}">Inici</a>
-          <a href="{{ '/SP1/' | relative_url }}">Sprint 1</a>
-          <a href="{{ '/SP2/' | relative_url }}">Sprint 2</a>
-          <a href="{{ '/SP3/' | relative_url }}">Sprint 3</a>
-          <a href="{{ '/SP4/' | relative_url }}">Sprint 4</a>
-          <a href="{{ '/SP5/' | relative_url }}">Sprint 5</a>
-        </nav>
-      </div>
-    </header>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="assetscss/extra.css" />
+</head>
+<body>
 
-    <main class="content container">
-      {{ content }}
-    </main>
+  <h1>{{ page.title }}</h1>
 
-    <footer class="site-footer">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
-      <p>Autor: Eros</p>
-    </footer>
-  </body>
+  {{ content }}
+
+  <footer class="license">
+    © 2025 Mireia Consarnau  
+    <br/>
+    Este curso se distribuye bajo la licencia
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons BY-NC-SA 3.0 ES</a>
+    <br/>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">
+      <img src="https://i.creativecommons.org/l/by-nc-sa/3.0/es/88x31.png" alt="Licencia CC BY-NC-SA 3.0 ES" />
+    </a>
+  </footer>
+
+</body>
 </html>
