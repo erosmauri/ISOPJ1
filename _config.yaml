@@ -8,3 +8,5 @@ sass:
 
 extra_css:
   - /assetscss/extra.css
+
+search_enabled: false
