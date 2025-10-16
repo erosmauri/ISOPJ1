@@ -1,11 +1,10 @@
 title: Sistemes Operatius
-remote_theme: pages-themes/cayman@v0.3.0
+remote_theme: pages-themes/cayman
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 sass:
   style: compressed
 
-# Load your custom CSS on all pages
 extra_css:
   - /assetscss/extra.css
