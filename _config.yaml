@@ -1,10 +1,9 @@
-sass:
-  style: compressed
-
+title: Sistemes Operatius"
 remote_theme: CaptainIRS/hacker-plus-theme
 plugins:
-  - jekyll-seo-tag
   - jekyll-remote-theme
-
+  - jekyll-seo-tag
+sass:
+  style: compressed
 include:
   - assetscss/extra.css
