@@ -1,9 +1,9 @@
 site_name: Eros Sistemes Operatius
 site_author: Eros
+docs_dir: .
 
 theme:
   name: material
-  custom_dir: assetscss
   favicon: favicon-32x32.png
   logo: favicon-32x32.png
   palette:
