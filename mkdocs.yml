@@ -3,7 +3,7 @@ site_author: Eros
 
 theme:
   name: material
-  custom_dir: docs/overrides
+  custom_dir: assetscss
   favicon: favicon-32x32.png
   logo: favicon-32x32.png
   palette:
@@ -59,10 +59,6 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Reversing: reversing.md
-  - Forensics: forensics.md
-  - HackTheBox WriteUps: walkthroughs.md
-  - PortSwigger Labs: portswigger.md
 
 copyright: |
   &copy; 2025 <a href="https://github.com/erosmauri" target="_blank" rel="noopener">Eros</a>
