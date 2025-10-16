@@ -6,6 +6,5 @@ plugins:
 sass:
   style: compressed
 
-# Load your custom CSS on all pages
 extra_css:
   - /assetscss/extra.css
