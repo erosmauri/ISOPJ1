@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title | default: site.title }}</title>
     <link rel="stylesheet" href="{{ '/assetscss/extra.css' | relative_url }}">
-    <link rel="icon" href="{{ '/assets/favicon-32x32.png' | relative_url }}" />
+    <link rel="icon" href="{{ '/assetscss/favicon-32x32.png' | relative_url }}" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
         <h1 class="site-title">
-          <span class="lock-icon">🔒</span>
-          {{ site.title }}
+          🔒 {{ site.title }}
         </h1>
         <nav class="site-nav">
           <a href="{{ '/' | relative_url }}">Inici</a>
