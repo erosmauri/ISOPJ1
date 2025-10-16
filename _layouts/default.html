@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/assetscss/extra.css' | relative_url }}">
-</head>
 <body>
-
-  <h1>{{ page.title }}</h1>
-
-  {{ content }}
+  <div class="md-typeset">
+    <h1>{{ page.title }}</h1>
+    {{ content }}
+  </div>
 
   <footer class="license">
-    © 2025 Mireia Consarnau  
+    © 2025 Eros Mauri  
     <br/>
     Este curso se distribuye bajo la licencia
     <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons BY-NC-SA 3.0 ES</a>
@@ -22,6 +14,4 @@
       <img src="https://i.creativecommons.org/l/by-nc-sa/3.0/es/88x31.png" alt="Licencia CC BY-NC-SA 3.0 ES" />
     </a>
   </footer>
-
 </body>
-</html>
