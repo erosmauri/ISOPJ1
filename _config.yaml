@@ -6,4 +6,4 @@ plugins:
 sass:
   style: compressed
 include:
-  - assetscss/extra.css
+  - /assetscss/extra.css
