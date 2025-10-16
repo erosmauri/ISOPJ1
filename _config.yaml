@@ -1,9 +1,11 @@
-title: Sistemes Operatius"
+title: Sistemes Operatius
 remote_theme: CaptainIRS/hacker-plus-theme
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 sass:
   style: compressed
-include:
+
+# Load your custom CSS on all pages
+extra_css:
   - /assetscss/extra.css
