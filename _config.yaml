@@ -1,10 +1,10 @@
-theme: minima
-
 sass:
   style: compressed
 
+remote_theme: CaptainIRS/hacker-plus-theme
 plugins:
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 include:
   - assetscss/extra.css
