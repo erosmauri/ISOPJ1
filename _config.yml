@@ -1,15 +1,10 @@
-title: "Eros Sistemes Operatius"
-author: "Eros"
-description: "Curs de Sistemes Operatius amb exercicis, exemples i recursos pràctics."
 theme: minima
 
-# Optional: baseurl if hosted on GitHub Pages under a repo name
-# baseurl: "/Eros-Sistemes-Operatius"
-# url: "https://erosmauri.github.io"
+sass:
+  style: compressed
 
-collections:
-  - SP1
-  - SP2
-  - SP3
-  - SP4
-  - SP5
+plugins:
+  - jekyll-seo-tag
+
+include:
+  - assetscss/extra.css
