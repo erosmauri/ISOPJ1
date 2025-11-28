@@ -174,13 +174,32 @@ Per gestionar els processos, disposem d'unes eines fonamentals:
 
         systemctl, service → Inicien, aturen o reinicien serveis del sistema.
 
-Aspectes pràctics: Cal recordar que un procés hereta els permisos de l'usuari que l'ha llançat i pot estar associat tant a un servei del sistema com a una sessió d'usuari.
+**Aspectes pràctics**: Cal recordar que un procés hereta els permisos de l'usuari que l'ha llançat i pot estar associat tant a un servei del sistema com a una sessió d'usuari.
 
-A continuació, veurem com utilitzar aquestes eines a nivell bàsic.
+* A continuació, veurem com utilitzar aquestes eines a nivell bàsic.
 
 ## Gestió d'usuaris i grups i permisos
 
-Que es un usuari, que es un grup?
+El model de seguretat de Linux es basa en els conceptes d'usuaris i grups, que defineixen de manera precisa qui pot accedir, modificar o executar arxius i processos al sistema.
+Tipus d'Usuaris
+
+    Usuari Normal: Un usuari estàndard que pot iniciar sessió i treballar dins del seu entorn i espai personal. Els seus permisos són limitats per protegir la integritat del sistema.
+
+    Superusuari (root): L'administrador del sistema. Té accés i control absolut sobre totes les operacions i arxius. S'ha d'utilitzar amb extrema cura.
+
+    Usuari de Servei (Daemon): Comptes especials creats per a l'execució de serveis o aplicacions (com www-data per a un servidor web o mysql per a la base de dades). No poden iniciar sessió interactiva.
+
+    Usuari de Sistema: Són similars als usuaris de servei i solen tenir un UID (User ID) baix (normalment per sota de 1000). Estan reservats per a processos i funcions internes del sistema operatiu.
+
+Grups
+
+Un grup és una col·lecció d'usuaris que comparteixen els mateixos permisos sobre certs arxius o directoris. Cada usuari pertany a:
+
+    Un grup principal, que es defineix al crear l'usuari.
+
+    Múltiples grups secundaris, als quals es pot afegir posteriorment.
+
+Els grups són una eina essencial per a la gestió eficient de permisos, ja que permeten, per exemple, concedir accés a una carpeta compartida a tot un equip de treball d'una sola vegada, en lloc de configurar els permisos per a cada usuari individualment.
 
 ## Fitxers importants
 
