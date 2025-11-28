@@ -473,7 +473,66 @@ Descripció detallada de cada camp
 
         Buit = cap usuari addicional al grup
 
-Explicació /etc/gshadow veure qui es l'administrador del grup
+Explicació **/etc/gshadow**:
+
+![alt text](<Gestió d'usuaris i grups i permisos img/15.png>)
+
+L'arxiu /etc/gshadow conté la informació segura dels grups, incloent contrasenyes de grup i administradors. És la contrapart segura de /etc/group.
+Estructura de cada línia
+
+Cada línia representa un grup i conté 4 camps separats per dos punts:
+
+**nom_grup:contrasenya_encryptada:administradors:membres**
+
+Descripció detallada de cada camp
+
+1. **nom_grup**
+
+    Exemple: root, sudo, developers
+
+    Descripció:
+
+        Nom del grup (ha de coincidir amb /etc/group)
+
+        Serveix com a clau d'enllaç entre els dos arxius
+
+2. **contrasenya_encryptada**
+
+    Exemple: !, $6$rounds=5000$..., *
+
+    Descripció:
+
+        Contrasenya encryptada per canviar al grup amb newgrp
+
+        ! o * = no hi ha contrasenya de grup
+
+        Contrasenya vàlida = hash encryptat
+
+        Rarament s'utilitza en sistemes moderns
+
+3. **administradors**
+
+    Exemple: anna,root, pere, (buit)
+
+    Descripció:
+
+        Llista d'usuaris que poden gestionar el grup
+
+        Poden afegir/eliminar membres i canviar la contrasenya del grup
+
+        Separats per comes
+
+4. **membres**
+
+    Exemple: marta,jordi, user1,user2, (buit)
+
+    Descripció:
+
+        Llista d'usuaris que són membres del grup
+
+        Ha de coincidir amb el camp de membres de /etc/group
+
+        Separats per comes
 
 apt install gnome-system-tools
 
