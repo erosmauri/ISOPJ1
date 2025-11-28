@@ -204,7 +204,106 @@ Els grups són una eina essencial per a la gestió eficient de permisos, ja que 
 
 ## Fitxers importants
 
-Explicació /etc/passwd:
+* En Linux, la informació d'usuaris i grups es gestiona de manera centralitzada mitjançant fitxers de configuració de text ubicats dins del directori /etc.
+
+Explicació **/etc/passwd**:
+
+![alt text](<Gestió d'usuaris i grups i permisos img/1.png>)
+
+Funció principal
+
+Conté tots els usuaris del sistema i la informació bàsica de cadascun.
+Estructura de cada línia
+
+Cada línia té 7 camps separats per :
+text
+
+nom_usuari:x:UID:GID:GECOS:directori_home:shell
+
+Desglossament detallat de cada camp
+1. nom_usuari (Nom d'usuari)
+
+    Exemple: root, anna, mysql
+
+    Que és:
+
+        Identificador únic de l'usuari
+
+        El que escrivim per fer login
+
+        Sensible a majúscules/minúscules
+
+2. x (Indicador de contrasenya)
+
+    Exemple: x, *, !
+
+    Que significa:
+
+        x = Contrasenya guardada a /etc/shadow
+
+        * o ! = Compte bloquejat (no pot fer login)
+
+        Si està buit = Sense contrasenya (⚠️ perillós)
+
+3. UID (User ID)
+
+    Exemple: 0, 1000, 33
+
+    Que és:
+
+        Número d'identificació únic de l'usuari
+
+        0 = usuari root (superusuari)
+
+        1-999 = usuaris del sistema
+
+        1000+ = usuaris normals
+
+4. GID (Group ID)
+
+    Exemple: 0, 1000, 33
+
+    Que és:
+
+        Número del grup principal de l'usuari
+
+        Determina els permisos per defecte
+
+5. GECOS (Informació addicional)
+
+    Exemple: Anna Garcia,,,, Marc Lopez,Sales,1234
+
+    Que és:
+
+        Informació opcional de l'usuari
+
+        Normalment només s'omple el nom complet
+
+        Format: Nom,Despatx,Telèfon,Altres
+
+6. directori_home (Directori personal)
+
+    Exemple: /home/anna, /root, /var/www
+
+    Que és:
+
+        La carpeta personal de l'usuari
+
+        On es guarden els seus fitxers
+
+        Directori on entra quan fa login
+
+7. shell (Intèrpret d'ordres)
+
+    Exemple: /bin/bash, /bin/sh, /usr/sbin/nologin
+
+    Que és:
+
+        El programa que s'executa quan l'usuari fa login
+
+        /bin/bash = shell normal
+
+        /usr/sbin/nologin = no permet login (comptes de sistema)
 
 Explicacio que conté nom on consulta la seva contraseña etc...
 
