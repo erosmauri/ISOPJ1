@@ -210,100 +210,94 @@ Explicació **/etc/passwd**:
 
 ![alt text](<Gestió d'usuaris i grups i permisos img/1.png>)
 
-Funció principal
+Cada línia representa un usuari i conté 7 camps separats per dos punts:
 
-Conté tots els usuaris del sistema i la informació bàsica de cadascun.
-Estructura de cada línia
+**nom_usuari:x:UID:GID:GECOS:directori_home:shell**
 
-Cada línia té 7 camps separats per :
-text
-
-nom_usuari:x:UID:GID:GECOS:directori_home:shell
-
-Desglossament detallat de cada camp
-1. nom_usuari (Nom d'usuari)
+Descripció detallada de cada camp
+1. **nom_usuari**
 
     Exemple: root, anna, mysql
 
-    Que és:
+    Descripció:
 
-        Identificador únic de l'usuari
+        Nom únic que identifica l'usuari al sistema
 
-        El que escrivim per fer login
+        És el que s'utilitza per iniciar sessió
 
-        Sensible a majúscules/minúscules
+        Normalment té un màxim de 32 caràcters
 
-2. x (Indicador de contrasenya)
+2. **x (camp de contrasenya)**
 
     Exemple: x, *, !
 
-    Que significa:
+    Descripció:
 
-        x = Contrasenya guardada a /etc/shadow
+        x indica que la contrasenya està emmagatzemada a /etc/shadow
 
-        * o ! = Compte bloquejat (no pot fer login)
+        * o ! vol dir que el compte està blocat
 
-        Si està buit = Sense contrasenya (⚠️ perillós)
+        Si està buit, l'usuari no té contrasenya (insicur)
 
-3. UID (User ID)
+3. **UID (User ID)**
 
     Exemple: 0, 1000, 33
 
-    Que és:
+    Descripció:
 
         Número d'identificació únic de l'usuari
 
         0 = usuari root (superusuari)
 
-        1-999 = usuaris del sistema
+        1-999 = usuaris del sistema (serveis)
 
         1000+ = usuaris normals
 
-4. GID (Group ID)
+4. **GID (Group ID)**
 
     Exemple: 0, 1000, 33
 
-    Que és:
+    Descripció:
 
         Número del grup principal de l'usuari
 
-        Determina els permisos per defecte
+        Defineix els permisos per defecte per a nous arxius
 
-5. GECOS (Informació addicional)
+5. **GECOS (Informació addicional)**
 
-    Exemple: Anna Garcia,,,, Marc Lopez,Sales,1234
+    Exemple: Anna Garcia,,,, Pere Lopez,Vendes,555-1234
 
-    Que és:
+    Descripció:
 
-        Informació opcional de l'usuari
+        Informació opcional sobre l'usuari
 
-        Normalment només s'omple el nom complet
+        Normalment només s'inclou el nom complet
 
-        Format: Nom,Despatx,Telèfon,Altres
+        Format: Nom complet,Despatx,Telefon,Altres
 
-6. directori_home (Directori personal)
+6. **directori_home**
 
     Exemple: /home/anna, /root, /var/www
 
-    Que és:
+    Descripció:
 
-        La carpeta personal de l'usuari
+        Directori personal de l'usuari
 
-        On es guarden els seus fitxers
+        On s'emmagatzemen els seus arxius personals
 
-        Directori on entra quan fa login
+        Directori per defecte en iniciar sessió
 
-7. shell (Intèrpret d'ordres)
+7. **shell**
 
     Exemple: /bin/bash, /bin/sh, /usr/sbin/nologin
 
-    Que és:
+    Descripció:
 
-        El programa que s'executa quan l'usuari fa login
+        Intèrpret d'ordres que s'executa en iniciar sessió
 
-        /bin/bash = shell normal
+        /bin/bash = shell Bash normal
 
-        /usr/sbin/nologin = no permet login (comptes de sistema)
+        /usr/sbin/nologin o /bin/false = no permet inici de sessió (comptes de servei)
 
 Explicacio que conté nom on consulta la seva contraseña etc...
 
