@@ -94,7 +94,17 @@ Els passos a seguir son primerament executem l'eina i seleccionem el disc dalt a
 
 ![alt text](Imatges/24.png)
 
+* Per finalitzar hem de aplicar els canvis, per fer-ho cliquem al tick verd i acceptem la confirmació que ens surt.
+
+![alt text](Imatges/25.png)
+
 #### Via CLI (Command Line Interface)
+
+Per realitzar-ho ho farem amb la comanda **fdisk**.
+
+Anteriorment com que ja indentificat quina es la meva partició, un cop ja ho sabem executem la comanda i seguim els passos que s'observen a la captura de pantalla.
+
+![alt text](Imatges/7.png)
 
 ## Gestió de procesos
  
