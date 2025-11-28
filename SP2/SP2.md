@@ -106,21 +106,39 @@ Anteriorment com que ja indentificat quina es la meva partició, un cop ja ho sa
 
 ![alt text](Imatges/7.png)
 
-Ara creem la partció.
+* Ara creem la partció.
 
 ![alt text](Imatges/8.png)
 
-Aqui podem observar que esta creat correctament.
+* Aqui podem observar que esta creat correctament.
 
 ![alt text](Imatges/9.png)
 
-Ara amb la comanda "mkfs.ext4" podem canviar la mida del bloc amb aquest cas ho posaré amb **2048**.
+* Ara amb la comanda "mkfs.ext4" podem canviar la mida del bloc amb aquest cas ho posaré amb **2048**.
 
 ![alt text](Imatges/10.png)
 
-I podem comprovar-ho amb aquesta comanda.
+* I podem comprovar-ho amb aquesta comanda.
 
 ![alt text](Imatges/11.png)
+
+* I a l'altra partició com a **NTFS** per a que Windows ho reconeixi.
+
+![alt text](Imatges/12.png)
+
+* Finalment podem entrar al **GPARTED** i comprovar-ho.
+
+![alt text](Imatges/13.png)
+
+### Muntatge
+
+Per fer aquest apartat primerament començarem creant una carpeta que s'anomena "particio1" a la ruta **/mnt** i també l'arxiu "adeu".
+
+![alt text](Imatges/14.png)
+
+* Muntem temporalment amb ```mount -t ext4 /dev/sdb1``` **/mnt/particio1**, i afegim un arxiu dintre.
+
+![alt text](Imatges/15.png)
 
 ## Gestió de procesos
  
