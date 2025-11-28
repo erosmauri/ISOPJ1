@@ -151,7 +151,33 @@ Per fer aquest apartat primerament començarem creant una carpeta i arxiu a la r
 ![alt text](Imatges/19.png)
 
 ## Gestió de procesos
- 
+
+Un procés és la instància d'un programa en execució. A cadascun se li assigna un identificador únic (PID), està associat a un usuari propietari i pot trobar-se en diversos estats (com ara en execució, en espera o aturat). El sistema operatiu és el responsable de la planificació i la distribució del temps de CPU entre tots els processos.
+
+### Eines bàsiques de gestió de processos
+
+Per gestionar els processos, disposem d'unes eines fonamentals:
+
+    Per visualitzar-los:
+
+        ps, top, htop → Mostren els processos actius.
+
+    Per finalitzar-los:
+
+        kill, pkill → Tanquen un procés pel seu PID o nom.
+
+    Per gestionar la prioritat:
+
+        nice, renice → Ajusten la prioritat d'execució.
+
+    Per controlar serveis (daemons):
+
+        systemctl, service → Inicien, aturen o reinicien serveis del sistema.
+
+Aspectes pràctics: Cal recordar que un procés hereta els permisos de l'usuari que l'ha llançat i pot estar associat tant a un servei del sistema com a una sessió d'usuari.
+
+A continuació, veurem com utilitzar aquestes eines a nivell bàsic.
+
 ## Gestió d'usuaris i grups i permisos
 
 Que es un usuari, que es un grup?
