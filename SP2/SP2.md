@@ -584,46 +584,172 @@ També tenim l’utilitat que ve en instal·lar **gnome-system-tools**. Que perm
 
 ![alt text](<Gestió d'usuaris i grups i permisos img/12.png>)
 
-* Amb su ens podem connectar al usuari.
+* Amb **su** ens podem connectar al usuari.
 
 ![alt text](<Gestió d'usuaris i grups i permisos img/13.png>)
 
 ### Permisos
 
+* Per fer aquest apartat he creat la carpeta palomes. Tambe un arxiu prova i he cambiat el grup propietari.
+
 ![alt text](Permisos/1.png)
+
+* Aqui podem observar la jerarquia dels permisos
 
 ![alt text](Permisos/2.png)
 
+Aqui estic configurant els permisos de la carpeta /var/palomes:
+
+    Canvio el grup propietari de nick a paloma
+
+    Afegeixo l'usuari ctre al grup paloma
+
+    Estableixo permisos 750 a la carpeta
+
 ![alt text](Permisos/3.png)
+
+Si em connecto desde el usuari nick puc comprovar que puc fer de tot.
 
 ![alt text](Permisos/4.png)
 
+En canvi si ho faig desde el usuari cire no puc fer-ho.
+
 ![alt text](Permisos/5.png)
+
+I si ho faig desde el usuari ferran no puc ni entrar dins.
 
 ![alt text](Permisos/6.png)
 
+Aqui estic ampliant els permisos de la carpeta /var/palomes:
+
+    Afegeixo l'usuari ferran al grup paloma
+
+    Afegeixo l'usuari detvy al grup paloma
+
+    Dono permisos d'escriptura al grup amb chmod g+w
+
 ![alt text](Permisos/7.png)
+
+Aqui estic verificant els permisos de la carpeta /var/palomes:
+
+    Com l'usuari deivy (del grup paloma):
+
+        Puc accedir a la carpeta
+
+        Puc crear fitxers (touch ptl)
+
+    Com l'usuari ferran (també del grup paloma):
+
+        Puc accedir a la carpeta i llistar contingut
+
+        Puc eliminar fitxers (demana confirmació perquè el fitxer és protegit)
+
+Resultat que confirmo:
+
+    Tots dos usuaris del grup paloma poden accedir i gestionar fitxers
+
+    Els fitxers existents tenen permisos restringits (protegits contra escriptura)
+
+    La carpeta té permisos correctes perquè el grup pugui treballar
 
 ![alt text](Permisos/8.png)
 
+Aqui estic comprovant els permisos de la carpeta **/var/palomes** amb diferents usuaris del grup:
+
+Com a deivy (grup paloma):
+
+    Puc entrar a la carpeta
+
+    Puc crear fitxers nous (ptl)
+
+Com a ferran (grup paloma):
+
+    Puc entrar i veure el contingut
+
+    Puc eliminar fitxers (demana confirmació)
+
+Confirmo que:
+
+    La carpeta té els permisos correctes per al grup
+
+    Tots els membres del grup poden crear i eliminar fitxers
+
+    Els fitxers estan protegits contra escriptura (per això demana confirmació)
+
 ![alt text](Permisos/9.png)
 
+Aqui estic veient un problema amb els permisos de la carpeta **/var/palomes**:
+
+El que funciona:
+
+    deivy pot crear fitxers (ptlvaras)
+
+    ferran pot crear fitxers (ddd)
+
+    Tots dos poden accedir a la carpeta
+
+El problema:
+
+    ferran NO pot eliminar el fitxer ptlvaras de deivy
+
+    La carpeta mostra drwxrwx--T (el sticky bit T està actiu)
+
+La causa:
+
+El sticky bit (la T al final dels permisos) està activat. Això vol dir que:
+
+    Els usuaris només poden eliminar els seus propis fitxers
+
+    No poden eliminar fitxers d'altres usuaris, encara que siguin del mateix grup
+
+El sticky bit està limitant la capacitat dels usuaris del grup per eliminar fitxers d'altres membres.
+
 ![alt text](Permisos/10.png)
+
+Finalment per als permisos **SUID**, he fet un metode que serveix per a escalar privilegis amb aquest cas he donat permisos SUID a la /bin/bash, el que em permet aixo es desde qualsevol usuari no privilegiat poden aconseguir una shell privilegiada, ja que quan ho executem ho estem fent com a root.
+
+## ACL
+
+### Importància de les ACL a Ubuntu
+
+Raons principals per utilitzar ACL
+
+1. Flexibilitat en gestió de permisos
+
+    Superen les limitacions del model usuari/grup/altres
+
+    Permeten assignar múltiples usuaris i grups al mateix recurs
+
+    Ofereixen control granular d'accés
+
+2. Escalabilitat en entorns complexos
+
+    Necessàries en sistemes amb múltiples usuaris i grups
+
+    Essencials en servidors compartits
+
+    Importants en entorns corporatius
+
+3. Seguretat més precisa
+
+    Permeten implementar polítiques d'accés detallades
+
+    Milloren el principi de mínim privilegi
+
+    Faciliten l'auditoria d'accés
 
 ![alt text](ACL/1.png)
 
 ![alt text](ACL/2.png)
 
 ![alt text](ACL/3.png)
-sticky
-
-suid
 
 ## Umask
 
 Què és la umask?
 
 Màscara que determina els permisos per defecte per a nous arxius i directoris.
+
 On es configura a Ubuntu?
 
 Arxius principals:
@@ -635,6 +761,8 @@ Arxius principals:
 Comprovar umask actual:
 
 **umask**
+
+![alt text](<Gestió d'usuaris i grups i permisos img/17.png>)
 
 Valors per defecte a Ubuntu
 
@@ -653,6 +781,8 @@ Valors per defecte a Ubuntu
 
     Directoris: 755 (rwxr-xr-x)
 
+![alt text](<Gestió d'usuaris i grups i permisos img/18.png>)
+
 **Com funciona el càlcul?**
 
 Permisos base:
@@ -666,19 +796,13 @@ Exemple umask 002:
 Arxiu:   666 - 002 = 664 (rw-rw-r--)
 Directori: 777 - 002 = 775 (rwxrwxr-x)
 
-canvia umask .profile login.defs
+* Aqui he canviat temporalment el umask i he fet una provat creant una carpeta i un arxiu.
 
-umask captura standrd user root
+![alt text](<Gestió d'usuaris i grups i permisos img/19.png>)
 
-umask 0004 temporalment no root
+* Per a fer-ho permanenment podem fer-ho modificant l'arxiu **login.defs**
 
-crear carpeta i fitxer
-
-nano etc login.defs canviar umask temporalment
-
-adduser touch i mkdir
-
-## Directoris i fitxers importants
+![alt text](<Gestió d'usuaris i grups i permisos img/21.png>)
 
 ## Gestió avançada
 
