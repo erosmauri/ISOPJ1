@@ -132,13 +132,23 @@ Anteriorment com que ja indentificat quina es la meva partició, un cop ja ho sa
 
 ### Muntatge
 
-Per fer aquest apartat primerament començarem creant una carpeta que s'anomena "particio1" a la ruta **/mnt** i també l'arxiu "adeu".
+Per fer aquest apartat primerament començarem creant una carpeta i arxiu a la ruta **/mnt**.
 
-![alt text](Imatges/14.png)
+![alt text](Imatges/16.png)
 
 * Muntem temporalment amb ```mount -t ext4 /dev/sdb1``` **/mnt/particio1**, i afegim un arxiu dintre.
 
 ![alt text](Imatges/15.png)
+
+* Si reiniciem la particio que acabem de muntar ja no es trobara, pero els arxius que hem creat no se han borrat ja que encara estan emmagatzemades al disc.
+
+* A continuació podem fer-ho de manera persistent. Per fer-ho editarem el fitxer **/etc/fstab**.
+
+![alt text](Imatges/18.png)
+
+* Si ara reiniciem amb aquest cas es persistent.
+
+![alt text](Imatges/19.png)
 
 ## Gestió de procesos
  
