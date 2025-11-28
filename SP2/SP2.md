@@ -56,11 +56,15 @@ Primerament, diem que gparted es el editor de particions de GNOME per a crear, r
 
 * Amb la comanda `fdisk -l` podem veure l'espai.
 
-* Amb aquesta comanda
-
 ![2](image.png)
 
+* Amb aquesta comanda podem mirar la mida del bloc de la partició, i filtrem amb grep per la paraula "Block".
+
 ![3](image-1.png)
+
+Per a la fragmentació externa podem fer-ho amb la comanda "e4defrag", aquí ens en indica si una partició fa falta fragmentar.
+
+![4](Imatges/4.png)
 
 ## Gestió de procesos
  
