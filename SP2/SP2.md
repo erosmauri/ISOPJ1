@@ -58,7 +58,7 @@ Es una agrupacio logica de particions i/o discos, es posar una capa d'abstració
 
 ![3](image-1.png)
 
-* Per a la fragmentació externa podem fer-ho amb la comanda "e4defrag", aquí ens en indica si una partició fa falta fragmentar.
+* Per a la fragmentació externa podem fer-ho amb la comanda "e4defrag", aquí ens en indica si fa falta fragmentar alguna partició.
 
 ![4](Imatges/4.png)
 
@@ -68,7 +68,33 @@ Es una agrupacio logica de particions i/o discos, es posar una capa d'abstració
 
 ### GPARTED
 
-Primerament, diem que gparted es el editor de particions de GNOME per a crear, reorganitzar i eliminar particions de disc. Permet triar el sistema de fitxers (FAT32, EXT4, NTFS…) pero no es pot modificar la mida del block.
+* Primerament, diem que gparted es el editor de particions de GNOME per a crear, reorganitzar i eliminar particions de disc. 
+
+* Permet triar el sistema de fitxers (FAT32, EXT4, NTFS…) pero no es pot modificar la mida del block.
+
+#### Via interficie gràfica (GPARTED)
+
+Els passos a seguir son primerament executem l'eina i seleccionem el disc dalt a la dreta.
+
+![alt text](Imatges/20.png)
+
+* Ara anirem a "Dispositivo" i "Crear tabla de particiones".
+
+![alt text](Imatges/21.png)
+
+* Aquí ens sortira una alerta i hem de canviar el tipo de tabla de particiones i posar-ho amb "gpt".
+
+![alt text](Imatges/22.png)
+
+* Un cop ja ho tenim podem fer clic dret sobre la particio per a crear una nova partició.
+
+![alt text](Imatges/23.png)
+
+* Aquí hem de posar-ho amb NTFS i podem canviar la mida de la partició.
+
+![alt text](Imatges/24.png)
+
+#### Via CLI (Command Line Interface)
 
 ## Gestió de procesos
  
