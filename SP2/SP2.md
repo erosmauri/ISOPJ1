@@ -215,6 +215,7 @@ Cada línia representa un usuari i conté 7 camps separats per dos punts:
 **nom_usuari:x:UID:GID:GECOS:directori_home:shell**
 
 Descripció detallada de cada camp
+
 1. **nom_usuari**
 
     Exemple: root, anna, mysql
@@ -299,11 +300,178 @@ Descripció detallada de cada camp
 
         /usr/sbin/nologin o /bin/false = no permet inici de sessió (comptes de servei)
 
-Explicacio que conté nom on consulta la seva contraseña etc...
+Explicació **/etc/shadow**:
 
-Explicació /etc/shadow en quin tipus de hash esta caducitat de contraseña etc...
+![alt text](<Gestió d'usuaris i grups i permisos img/2.png>)
 
-Explicació /etc/group
+L'arxiu /etc/shadow conté la informació de les contrasenyes dels usuaris i les polítiques d'expiració. És un arxiu segur que només pot llegir l'usuari root.
+
+Cada línia representa un usuari i conté 9 camps separats per dos punts:
+
+**nom_usuari:contrasenya_encryptada:darrers_canvis:minims:maxims:avis:inactiu:caducitat:camp_reserva**
+
+Descripció detallada de cada camp
+
+1. **nom_usuari**
+
+    Exemple: root, anna, mysql
+
+    Descripció:
+
+        Nom de l'usuari (ha de coincidir amb /etc/passwd)
+
+        Serveix com a clau d'enllaç entre els dos arxius
+
+2. **contrasenya_encryptada**
+
+    Exemple: $6$rounds=5000$t..., *, !!
+
+    Descripció:
+
+        Contrasenya encryptada amb hash
+
+        * o !! = compte blocat o sense contrasenya
+
+        Format: $algoritme$salt$hash
+
+        Algoritmes comuns: $1$ (MD5), $5$ (SHA-256), $6$ (SHA-512)
+
+3. **darrers_canvis (last change)**
+
+    Exemple: 19157, 0
+
+    Descripció:
+
+        Data de l'últim canvi de contrasenya en dies des de l'1/1/1970
+
+        0 = ha de canviar-la en el proper login
+
+        19157 = 19,157 dies des de l'1/1/1970
+
+4. **minims (minimum days)**
+
+    Exemple: 0, 7
+
+    Descripció:
+
+        Dies mínims que han de passar abans de poder canviar la contrasenya
+
+        0 = es pot canviar en qualsevol moment
+
+5. **maxims (maximum days)**
+
+    Exemple: 99999, 90
+
+    Descripció:
+
+        Dies màxims que la contrasenya és vàlida
+
+        99999 = quasi etern (273 anys)
+
+        90 = ha de canviar-la cada 90 dies
+
+6. **avis (warning days)**
+
+    Exemple: 7, 0
+
+    Descripció:
+
+        Quants dies abans de la caducitat s'envia un avís
+
+        7 = avisa 7 dies abans que caduqui
+
+7. **inactiu (inactive days)**
+
+    Exemple: -1, 30
+
+    Descripció:
+
+        Dies de gràcia després de caducar abans que el compte es desactivi
+
+        -1 = sense període d'inactivitat
+
+8. **caducitat (expiration date)**
+
+    Exemple: ``, 20000
+
+    Descripció:
+
+        Data absoluta de caducitat del compte en dies des de l'1/1/1970
+
+        Buit = el compte no caduca mai
+
+9. **camp_reserva (reserved field)**
+
+    Exemple: (buit)
+
+    Descripció:
+
+        Camp reservat per a ús futur
+
+        Normalment està buit
+
+Explicació **/etc/group**:
+
+![alt text](<Gestió d'usuaris i grups i permisos img/14.png>)
+
+L'arxiu /etc/group conté la informació dels grups del sistema i els seus membres. Defineix els grups d'usuaris i les seves relacions.
+Estructura de cada línia
+
+Cada línia representa un grup i conté 4 camps separats per dos punts:
+
+**nom_grup:contrasenya_grup:GID:llista_membres**
+
+Descripció detallada de cada camp
+
+1. **nom_grup**
+
+    Exemple: root, users, sudo, www-data
+
+    Descripció:
+
+        Nom del grup
+
+        Ha de ser únic al sistema
+
+        Normalment en minúscules
+
+2. **contrasenya_grup**
+
+    Exemple: x, *
+
+    Descripció:
+
+        x indica que la contrasenya del grup està a /etc/gshadow
+
+        * o buit = no hi ha contrasenya de grup
+
+        Rarament s'utilitza en sistemes moderns
+
+3. **GID (Group ID)**
+
+    Exemple: 0, 100, 1000, 33
+
+    Descripció:
+
+        Número d'identificació únic del grup
+
+        0 = grup root
+
+        1-999 = grups del sistema
+
+        1000+ = grups d'usuaris normals
+
+4. **llista_membres**
+
+    Exemple: anna,pere,marta, root, (buit)
+
+    Descripció:
+
+        Llista d'usuaris que són membres del grup, separats per comes
+
+        No inclou l'usuari que té aquest grup com a grup primari
+
+        Buit = cap usuari addicional al grup
 
 Explicació /etc/gshadow veure qui es l'administrador del grup
 
