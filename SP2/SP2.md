@@ -48,10 +48,6 @@ El format d'alt nivell només borra el sistema de fitxers.
 
 Es una agrupacio logica de particions i/o discos, es posar una capa d'abstració damunt de les particions.
 
-### GPARTED
-
-Primerament, diem que gparted es el editor de particions de GNOME per a crear, reorganitzar i eliminar particions de disc. Permet triar el sistema de fitxers (FAT32, EXT4, NTFS…) pero no es pot modificar la mida del block.
-
 ### Comandes
 
 * Amb la comanda `fdisk -l` podem veure l'espai.
@@ -62,9 +58,17 @@ Primerament, diem que gparted es el editor de particions de GNOME per a crear, r
 
 ![3](image-1.png)
 
-Per a la fragmentació externa podem fer-ho amb la comanda "e4defrag", aquí ens en indica si una partició fa falta fragmentar.
+* Per a la fragmentació externa podem fer-ho amb la comanda "e4defrag", aquí ens en indica si una partició fa falta fragmentar.
 
 ![4](Imatges/4.png)
+
+* En cas de voler-ho fragmentar podem executar la comanda pero sense el parametre "-c".
+
+![5](Imatges/5.png)
+
+### GPARTED
+
+Primerament, diem que gparted es el editor de particions de GNOME per a crear, reorganitzar i eliminar particions de disc. Permet triar el sistema de fitxers (FAT32, EXT4, NTFS…) pero no es pot modificar la mida del block.
 
 ## Gestió de procesos
  
