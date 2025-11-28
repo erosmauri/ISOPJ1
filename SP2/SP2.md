@@ -7,7 +7,7 @@ title: "SPRINT 2: INSTAL·LACIÓ, CONFIGURACIÓ DE PROGRAMARI DE BASE I GESTIÓ 
 
 ## Mida sector
 
-El sector és la unitat mínima física del disc on es guarden les dades i per defecte són 512 bytes. No es pot cambiar la mida.
+El sector és la unitat mínima física del disc on es guarden les dades i per defecte són **512 bytes**. No es pot cambiar la mida.
 
 ## Mida block
 
@@ -50,18 +50,20 @@ Es una agrupacio logica de particions i/o discos, es posar una capa d'abstració
 
 ### GPARTED
 
-Amb gparted no es pot modificar la mida del block
+Primerament, diem que gparted es el editor de particions de GNOME per a crear, reorganitzar i eliminar particions de disc. Permet triar el sistema de fitxers (FAT32, EXT4, NTFS…) pero no es pot modificar la mida del block.
 
 ### Comandes
 
-* Amb la comanda `fdisk -l` podem veure l'espai 
+* Amb la comanda `fdisk -l` podem veure l'espai.
+
+* Amb aquesta comanda
 
 ![2](image.png)
 
 ![3](image-1.png)
 
 ## Gestió de procesos
-
+ 
 ## Gestió d'usuaris i grups i permisos
 
 Que es un usuari, que es un grup?
@@ -101,6 +103,26 @@ personalitzacio comanda adduser, etc skel, comprovacions, useradd, login.defs
 Explica els arxius ocults del etc skel
 
 modificarlos i fer proves també
+
+### Permisos
+
+sticky
+
+suid
+
+explicacio umask de on surt
+
+canvia umask .profile login.defs
+
+umask captura standrd user root
+
+umask 0004 temporalment no root
+
+crear carpeta i fitxer
+
+nano etc login.defs canviar umask temporalment
+
+adduser touch i mkdir
 
 ## Directoris i fitxers importants
 
