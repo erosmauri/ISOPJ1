@@ -415,6 +415,7 @@ Explicació **/etc/group**:
 ![alt text](<Gestió d'usuaris i grups i permisos img/14.png>)
 
 L'arxiu /etc/group conté la informació dels grups del sistema i els seus membres. Defineix els grups d'usuaris i les seves relacions.
+
 Estructura de cada línia
 
 Cada línia representa un grup i conté 4 camps separats per dos punts:
@@ -477,7 +478,8 @@ Explicació **/etc/gshadow**:
 
 ![alt text](<Gestió d'usuaris i grups i permisos img/15.png>)
 
-L'arxiu /etc/gshadow conté la informació segura dels grups, incloent contrasenyes de grup i administradors. És la contrapart segura de /etc/group.
+L'arxiu **/etc/gshadow** conté la informació segura dels grups, incloent contrasenyes de grup i administradors. És la contrapart segura de **/etc/group**.
+
 Estructura de cada línia
 
 Cada línia representa un grup i conté 4 camps separats per dos punts:
@@ -534,37 +536,135 @@ Descripció detallada de cada camp
 
         Separats per comes
 
-apt install gnome-system-tools
+També tenim l’utilitat que ve en instal·lar **gnome-system-tools**. Que permet un poquet més.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/16.png>)
 
 ## Comandes bàsiques
 
-sudo adduser i comprovacions grep de cada fitxer
+### Adduser
 
-sudo deluser comprovació del /etc/passwd
+![alt text](<Gestió d'usuaris i grups i permisos img/3.png>)
 
-Visualitzar la creacio de carpetes del home creat
+### Userdel
 
-Useradd
+* Aqui elimino el usuari.
 
-Quines comandes he de utilitzar per canviar un nom de usuari correctament
+![alt text](<Gestió d'usuaris i grups i permisos img/4.png>)
 
-en useradd com fer-ho tot en una comanda
+* Aqui creo l'usuari amb useradd i faig les comprovacions adients. Tambe canvio el tipus de shell.
 
-chage comanda per a modificar la caducitat explicar
+![alt text](<Gestió d'usuaris i grups i permisos img/5.png>)
 
-personalitzacio comanda adduser, etc skel, comprovacions, useradd, login.defs
+* Aqui canvio la contraseña amb la comanada **passwd**.
 
-Explica els arxius ocults del etc skel
+![alt text](<Gestió d'usuaris i grups i permisos img/6.png>)
 
-modificarlos i fer proves també
+* De aquest manera podem bloquejar el usuari, si observem el shadow podem veure que es veu de manera diferent.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/7.png>)
+
+* I amb el parametre "-U" ho podem llevar.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/8.png>)
+
+* Comanda addgroup per crear un grup. I amb groupmod podem canviar coses dels grups.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/9.png>)
+
+* De aquesta manera podem assignar usuaris a grups.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/10.png>)
+
+* Comprovació
+
+![alt text](<Gestió d'usuaris i grups i permisos img/11.png>)
+
+* Amb **deluser** podem també eliminar o desasignar del grup un usuari.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/12.png>)
+
+* Amb su ens podem connectar al usuari.
+
+![alt text](<Gestió d'usuaris i grups i permisos img/13.png>)
 
 ### Permisos
 
+![alt text](Permisos/1.png)
+
+![alt text](Permisos/2.png)
+
+![alt text](Permisos/3.png)
+
+![alt text](Permisos/4.png)
+
+![alt text](Permisos/5.png)
+
+![alt text](Permisos/6.png)
+
+![alt text](Permisos/7.png)
+
+![alt text](Permisos/8.png)
+
+![alt text](Permisos/9.png)
+
+![alt text](Permisos/10.png)
+
+![alt text](ACL/1.png)
+
+![alt text](ACL/2.png)
+
+![alt text](ACL/3.png)
 sticky
 
 suid
 
-explicacio umask de on surt
+## Umask
+
+Què és la umask?
+
+Màscara que determina els permisos per defecte per a nous arxius i directoris.
+On es configura a Ubuntu?
+
+Arxius principals:
+
+    Sistema: /etc/profile i /etc/bash.bashrc
+
+    Usuari: ~/.bashrc
+
+Comprovar umask actual:
+
+**umask**
+
+Valors per defecte a Ubuntu
+
+**Usuaris normals:**
+    umask: 0002
+
+    Arxius: 664 (rw-rw-r--)
+
+    Directoris: 775 (rwxrwxr-x)
+
+**Usuari root:**
+
+    umask: 0022
+
+    Arxius: 644 (rw-r--r--)
+
+    Directoris: 755 (rwxr-xr-x)
+
+**Com funciona el càlcul?**
+
+Permisos base:
+
+    Arxius: 666 (rw-rw-rw-)
+
+    Directoris: 777 (rwxrwxrwx)
+
+Exemple umask 002:
+
+Arxiu:   666 - 002 = 664 (rw-rw-r--)
+Directori: 777 - 002 = 775 (rwxrwxr-x)
 
 canvia umask .profile login.defs
 
