@@ -820,14 +820,17 @@ Eines bàsiques per gestionar-los
 A nivell pràctic, cada procés hereta permisos de l'usuari que l'ha iniciat i pot estar vinculat a un servei o a una sessió d'usuari.
 
 A continuació, veurem com utilitzar-les de manera bàsica.
-Ús de pstree
 
+**Ús de pstree**
+
+```
 Paràmetre	Funció
 -p	Mostra el PID de cada procés.
 -u	Mostra l'usuari propietari de cada procés.
 -h	Ressalta el procés actual (útil quan es filtra).
 -n	Ordena processos per PID dins de cada arbre.
 -a	Mostra els arguments complets del procés (línia de comandes).
+```
 
 Per filtrar un procés, podem utilitzar grep en combinació amb altres eines.
 
