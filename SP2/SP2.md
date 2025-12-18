@@ -804,9 +804,150 @@ Directori: 777 - 002 = 775 (rwxrwxr-x)
 
 ![alt text](<Gestió d'usuaris i grups i permisos img/21.png>)
 
+## Gestió de processos
+
+Els processos són programes en execució dins del sistema. Cada procés té un PID (Identificador de Procés), un usuari propietari i pot trobar-se en diferents estats (actiu, en espera, aturat…). El sistema operatiu planifica i reparteix el temps de CPU entre ells.
+Eines bàsiques per gestionar-los
+
+    ps, top, htop: veure processos actius.
+
+    kill, pkill: finalitzar un procés per PID o nom.
+
+    nice, renice: ajustar la prioritat d'execució.
+
+    systemctl, service: controlar serveis (daemons). No l'abordarem aquí específicament.
+
+A nivell pràctic, cada procés hereta permisos de l'usuari que l'ha iniciat i pot estar vinculat a un servei o a una sessió d'usuari.
+
+A continuació, veurem com utilitzar-les de manera bàsica.
+Ús de pstree
+
+Paràmetre	Funció
+-p	Mostra el PID de cada procés.
+-u	Mostra l'usuari propietari de cada procés.
+-h	Ressalta el procés actual (útil quan es filtra).
+-n	Ordena processos per PID dins de cada arbre.
+-a	Mostra els arguments complets del procés (línia de comandes).
+
+Per filtrar un procés, podem utilitzar grep en combinació amb altres eines.
+
+kill -9 PID
+
+ctrl + c
+
+jobs
+
+fg %1
+
+Explicar disown i els apartats del top, modificar prioritat amb el NI (renice)
+
+Llencar processos amb &
+
+Teoria copies de seguretat
+
+teoria comandes backups
+
+1. cp -> Es una copia simple no inteligent nomes transfereix fitxers localment es molt simple de utilitzar pero no optimitzar
+2. rsync -> Es una eina inteligent que nomes copia els fitxers modificats i la sincronitzacio pot ser local o en remot via ssh
+3. dd -> Es una eina per a clonar discs o particions i no es inteligent copia tots els sectors
+
+3. Practica comandes backups
+
+1. cp
+2. rsync
+3. dd
+
+4. Practica programes backups
+
+1. deja -up
+2. Duplicity
+
+5. Teoria automatitzacio scripts, cron i anacron
+6. Practica automatitzacio
+
+1. cron
+2. anacron
+
+Que es una copia
+que es una imatge (iso)
+que es una instantania
+
+Tipus de copies
+
+diferencial (descripcio)
+completa (descripcio)
+incremental (descripcio)
+
+I que es necesita per recuperar (mini taula)
+
+fdisk comprovar i formatar els 2 discos de 1 GB mkfs.ext4
+
+Entrem a documents
+
+mkdir prova, touch prova2
+
+cd /var, mkdir copies, mount -t ext4 /dev/sdb1 /var/copies
+
+cp -R /home/<user>/Documents/* /var/copies/
+
+ls copies/
+
+touch /home/<user>/Documents/hola
+rm -r /home/<user>/Documents/prova
+
+cp -R /home/<user>/Documents/* /var/copies/
+
+ls copies/
+
+mkdir /home/<user>/Documents/adeu
+rm /home/<user>/Documents/hola
+
+rsync -av --delete /home/<user>/Documents/ /var/copies/
+
+ls copies/
+
+mount -t ext4 /dev/sdb1 /var/copies
+
+cd /var/
+
+mkdir clonacio
+
+mount -t ext4 /dev/sdc1 /var/clonacio
+
+dd if=/dev/sdb1 of=/dev/sdc1 bs=1M status=progress
+
+md5sum /dev/sdb1 /dev/sdc1
+
+Han de sortir iguals captura
+
+cron i anacron son 2 eines de automatitzacio que permeten executar tasques periodiques
+
+cron executa tasques programades en una data i hora especifiques si el sistema esta apagat la tasca es perd es ideal per a tasques en dates i hores concretes i per accions especifiques d'un usuari.
+
+anacron es ideal per executar tasques periodiques on no cal una hora i data especific normalment se utilitza per a tasques de manteniment del sistema i no requereix que el sistema estigui obert perque quan se obri ja l'executara
+
+Programar cron anacron
+
 ## Gestió avançada
+
+
 
 ## PAM
 
 ## Còpies de seguretat i automatització de tasques
+
 ## Quotes d'usuari
+
+Que es una quota?
+
+edquota -u usuari -> veure quotes un usuari
+
+setquota -u usuari -> establir quotes 1 usuari
+
+repquota /dev/sdc1 -> informe quotes de tots els usuaris el que ocupen
+
+quotaon /mnt/dades -> activar
+
+quotaoff /mnt/dades -> desactivar
+
+quotacheck -cug /mnt/dades -> crear arxius per a quotes usuari i grup si no estan per defecte
