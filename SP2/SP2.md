@@ -834,6 +834,58 @@ Paràmetre	Funció
 
 Per filtrar un procés, podem utilitzar grep en combinació amb altres eines.
 
+Aquí he filtrat per els processos del usuari alumnat.
+
+![alt text](Processos/10.png)
+
+I aquí ho he fet com a root.
+
+![alt text](Processos/11.png)
+
+**ps** Aquesta comanda, mostra informació sobre una selecció dels processos actius. Si volem una actualització repetitiva de la selecció i la informació mostrada, hauriem de usar top en comptes d’això.
+
+Alguns dels parametres mes comuns són:
+```
+a: mostra processos de tots els usuaris, no només del terminal actual.
+u: mostra informació en format d’usuari, amb columnes com %CPU, %MEM, USER.
+x: inclou processos sense terminal associat (daemons i serveis).
+-e: Mostra tots els processos del sistema, equivalent a -A.
+-o: Permet personalitzar exactament quines columnes vols que surti.
+i molts més
+```
+
+![alt text](Processos/12.png)
+
+Podem filtrar per obtenir les terminals que l’usuari fa servir amb ps aux | grep usuari | grep tty
+
+Aixó, mostra els processos d’un usuari concret que s’estan executant en terminals.
+
+```
+ps aux: mostra tots els processos amb informació detallada.
+grep usuario: filtra només els processos propietat de l’usuari “usuario”.
+grep tty: filtra només els processos que tenen un terminal associat (tty).
+```
+
+![alt text](Processos/13.png)
+
+Si volem matar un proces, podem fer servir kill, te diversos modes de terminar:
+
+```
+Tipus de Kill 	Senyal 	Descripció 	Comanda
+
+Kill suau 	SIGTERM 	Demana al procés finalitzar netament 	kill PID
+Kill forçat 	SIGKILL 	Mata immediatament, sense netejar recursos 	kill -9 PID
+Recarregar config 	SIGHUP 	Demana al procés que recarregui la configuració 	kill -1 PID
+Pausa 	SIGSTOP 	Pausa l’execució del procés 	kill -STOP PID
+Continuar 	SIGCONT 	Continua un procés pausat 	kill -CONT PID
+Interrupció Ctrl-C 	SIGINT 	Senyal d’interrupció (Ctrl+C) 	kill -2 PID
+Abortar 	SIGABRT 	Senyal d’error abortat, sovint genera core dump 	kill -6 PID
+```
+
+Aqui tenim un exemple obrint xclock al fons amb el “&” i matant-lo suau, mentres comprovem amb ps aux que s’ha mort.
+
+![alt text](Processos/14.png)
+
 kill -9 PID
 
 ctrl + c
