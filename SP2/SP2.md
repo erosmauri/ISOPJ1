@@ -886,6 +886,54 @@ Aqui tenim un exemple obrint xclock al fons amb el “&” i matant-lo suau, men
 
 ![alt text](Processos/14.png)
 
+També tenim la comanda **top**
+
+**top** és una comanda que mostra informació en temps real sobre processos i l'ús del sistema.
+
+![alt text](Processos/4.png)
+
+```
+Part superior (resum del sistema):
+
+    Temps: Temps d'execució del sistema
+
+    Usuaris: Nombre d'usuaris connectats
+
+    Load average: Càrrega mitjana (1, 5, 15 minuts)
+
+    Tasques: Total, en execució, dormint, aturades, zombie
+
+    %CPU: Ús del processador (us, sy, ni, id, wa, hi, si, st)
+
+    Memòria: Total, lliure, usada, memòria buffer/cache
+
+    Swap: Memòria d'intercanvi (swap) total i usada
+
+Part inferior (llista de processos):
+
+    PID: Identificador del procés
+
+    USUARI: Propietari del procés
+
+    PR: Prioritat
+
+    NI: Valor "nice" (prioritat ajustable)
+
+    VIRT: Memòria virtual utilitzada
+
+    RES: Memòria resident (física)
+
+    SHR: Memòria compartida
+
+    %CPU: Percentatge d'ús de CPU
+
+    %MEM: Percentatge d'ús de memòria
+
+    TEMPS+: Temps total d'execució
+
+    COMANDAMENT: Nom de la comanda
+```
+
 kill -9 PID
 
 ctrl + c
