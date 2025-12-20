@@ -934,15 +934,54 @@ Part inferior (llista de processos):
     COMANDAMENT: Nom de la comanda
 ```
 
-kill -9 PID
+També tenim htop que es el mateix pero de manera interactiva.
 
-ctrl + c
+![alt text](Processos/6.png)
 
-jobs
+Estats principals
+
+Codi	Estat (Català)	Descripció
+R	En execució (Running)	El procés està actiu o llest per ser assignat a la CPU
+W	En espera (Waiting)	El procés espera un recurs o un esdeveniment
+S	Aturat (Stopped)	El procés ha estat detingut, normalment per un senyal, sovint durant depuració
+Z	Zombi (Zombie)	El procés ha finalitzat però encara conserva una entrada a la taula de processos
+T	Trencat	Procés aturat per depuració o per senyal de trencament
+D	Dormint	Procés inactiu, esperant I/O, no pot ser interromput
+I	Inactiu (Idle)	El procés està completament inactiu, sense consumir CPU; molt habitual en fils del kernel
+
+Ara amb la comanda renice podem modificar la prioritat de un procés
+
+![alt text](Processos/15.png)
+
+Mostra la llista de feines (processos) que tens en execució o aturades dins de la sessió actual del terminal.
+
+Exemple de sortida:
+
+[1]+  Aturat     nano fitxer.txt
+[2]-  Executant  sleep 100 &
+
+
+Això vol dir:
+
+[1] i [2] són els números de feina
+
+Aturat → el procés està pausat
+
+Executant → el procés està funcionant en segon pla
+
+🔹 fg %1
+
+Serveix per portar una feina del segon pla o pausada al primer pla (foreground).
+
+fg = foreground
+
+%1 indica la feina número 1 (segons el que mostra jobs)
+
+En aquest cas:
 
 fg %1
 
-Explicar disown i els apartats del top, modificar prioritat amb el NI (renice)
+Recupera la feina número 1 i la torna a executar ocupant el terminal.
 
 Llencar processos amb &
 
