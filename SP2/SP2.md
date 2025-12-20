@@ -1230,18 +1230,63 @@ Mostra informació del progrés de la còpia, útil en operacions amb grans quan
 
 ![alt text](3.png)
 
+## Automatizació de tasques
+
 cron i anacron son 2 eines de automatitzacio que permeten executar tasques periodiques
 
 cron executa tasques programades en una data i hora especifiques si el sistema esta apagat la tasca es perd es ideal per a tasques en dates i hores concretes i per accions especifiques d'un usuari.
 
 anacron es ideal per executar tasques periodiques on no cal una hora i data especific normalment se utilitza per a tasques de manteniment del sistema i no requereix que el sistema estigui obert perque quan se obri ja l'executara
 
-Programar cron anacron
+### Cron i Anacron
+
+El cron es guarda a la ruta /etc/crontab i aixi es com es veu:
+
+![alt text](Crontab/1.png)
+
+Amb aquesta comanda podem especificar desde quin usuari volem entrar i el primer cop que entrem ens dirá en quin editor volem fer-ho.
+
+![alt text](Crontab/2.png)
+
+Amb aquesta ruta podem veure tots els binaris del cron.
+
+![alt text](Crontab/3.png)
+
+I aquest es el anacron que esta guardat amb aquesta ruta:
+
+![alt text](Crontab/4.png)
+
+Ara he programat un script que conté el següent codi:
+
+![alt text](Crontab/5.png)
+
+Li dono permisos de execució
+
+![alt text](Crontab/6.png)
+
+Vaig a Documentos i creo 2 imatges que seran les que es copiaran.
+
+![alt text](Crontab/7.png)
+
+Copio el script i el poso al cron.daily
+
+![alt text](Crontab/8.png)
+
+Finalment comprovo que esta alli
+
+![alt text](Crontab/9.png)
+
+I reemplaçem aquest valor per 1.
+
+![alt text](Crontab/10.png)
 
 ## Quotes d'usuari
 
 Que es una quota?
 
+En Linux, una quota és un mecanisme de control d’ús d’espai i fitxers dins d’un sistema de fitxers. Serveix per limitar la quantitat de disc o nombre d’inodes (fitxers) que un usuari o grup pot utilitzar, evitant que una sola persona ocupi tot l’espai i afecti la resta de l’equip.
+
+```
 edquota -u usuari -> veure quotes un usuari
 
 setquota -u usuari -> establir quotes 1 usuari
@@ -1253,3 +1298,76 @@ quotaon /mnt/dades -> activar
 quotaoff /mnt/dades -> desactivar
 
 quotacheck -cug /mnt/dades -> crear arxius per a quotes usuari i grup si no estan per defecte
+```
+
+Per dur a terme aquesta part necesitem instalar el paquet **quota**.
+
+![alt text](Quotes/1.png)
+
+Ara crearem una carpeta anomenada dades.
+
+![alt text](Quotes/2.png)
+
+I farem el muntatge de aquesta carpeta permanentment, ademes aquí afegirem usrquota i grpquota per a que puguesim configurar les quotes aqui.
+
+![alt text](Quotes/3.png)
+
+Fem un reboot i amb aquesta comanda podem comprovar que esta muntat correctament.
+
+![alt text](Quotes/4.png)
+
+Amb aquesta comanda podem generar els 2 arxius per a les quotes.
+
+![alt text](Quotes/5.png)
+
+I amb aquesta comanda activem les quotes.
+
+![alt text](Quotes/6.png)
+
+Ara farem la quota per al usuari gina.
+
+![alt text](Quotes/7.png)
+
+I li direm el maxim que pot arribar a gastar en espai amb aquella carpeta.
+
+![alt text](Quotes/8.png)
+
+Amb aquesta comanda podem veure els dies de gracia.
+
+![alt text](Quotes/9.png)
+
+Ara entrem desde el usuari gina i anem a la carpeta aquesta.
+
+![alt text](Quotes/10.png)
+
+Podem veure que per al usuari gina ara ens apareix.
+
+![alt text](Quotes/11.png)
+
+Amb aquesta comanda crearem un arxiu.
+
+![alt text](Quotes/12.png)
+
+I tornem a crear un altre arxiu per a ocupar espai amb aquesta carpeta.
+
+![alt text](Quotes/13.png)
+
+Si observem estem apunt de excedirnos del limit.
+
+![alt text](Quotes/14.png)
+
+Finalment crearem un altre arxiu
+
+![alt text](Quotes/15.png)
+
+I aquest no se ha afegit ja que ens hem excedit.
+
+![alt text](Quotes/16.png)
+
+I si creo un altre arxiu ja no hem deixará.
+
+![alt text](Quotes/17.png)
+
+Amb aquesta comanda podem modificar els dies de gracia.
+
+![alt text](Quotes/18.png)
