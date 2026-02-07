@@ -95,31 +95,37 @@ Realitzem consultes amb `ldapsearch` per verificar que els usuaris i grups estan
 
 ![alt text](imatges/25.png)
 
-## Configuració NFS
+## Configuració de Clients i Proves d'Autenticació LDAP
 
-A continuació, configurarem el servidor NFS per compartir directoris a la xarxa. Instal·lem el paquet `nfs-kernel-server`.
+Un cop tenim el servidor funcionant i poblat, és hora de configurar l'autenticació perquè el mateix servidor (o altres clients) reconeguin els usuaris LDAP.
+
+Instal·lem els paquets necessaris per a la integració amb NSS i PAM (`libnss-ldapd`, `libpam-ldapd` i `nscd`).
 
 ![alt text](imatges/26.png)
 
-Creem els directoris que volem compartir i els assignem els permisos adequats.
+Durant la instal·lació, ens demanarà configurar el servidor LDAP. Introduïm la URI del servidor (`ldap://localhost` o la IP corresponent).
 
 ![alt text](imatges/27.png)
 
-Editem el fitxer `/etc/exports` per definir quins directoris compartim i amb qui.
+Indiquem la base de cerca del directori (Base DN), per exemple `dc=fje,dc=clot`.
 
 ![alt text](imatges/28.png)
 
+Seleccionem quins serveis han d'utilitzar LDAP per a la resolució de noms. Marquem **passwd**, **group** i **shadow**.
+
 ![alt text](imatges/29.png)
 
-Reiniciem el servei NFS i comprovem que els directoris s'estan exportant correctament.
+Si fem un `getent passwd`, hauríem de veure els usuaris del sistema **i també** els usuaris definits a l'LDAP.
 
 ![alt text](imatges/30.png)
 
-Verifiquem des del client o el mateix servidor que els muntatges funcionen.
+Finalment, per assegurar que es crea automàticament el directori personal (`home directory`) quan un usuari LDAP inicia sessió, cal configurar PAM. Editem `/etc/pam.d/common-session` i afegim la línia `session required pam_mkhomedir.so skel=/etc/skel umask=0077`.
 
 ![alt text](imatges/31.png)
 
 ![alt text](imatges/32.png)
+
+Ara provem d'iniciar sessió amb un usuari de l'LDAP (per exemple `su - pere` o el nom d'usuari creat) i verifiquem que entrem correctament i es crea el seu directori home.
 
 ![alt text](imatges/33.png)
 
