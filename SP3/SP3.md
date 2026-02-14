@@ -618,6 +618,67 @@ Finalment, comprovem l'accés als recursos Samba.
 
 ![alt text](sambaimg/2026-01-29_13-35_1.png)
 
+Mes comprovacions amb els usuaris creats:
+
+#### Usuari Eros
+
+Si intento crear una carpeta desde l'usuari Eros no me ho permetrá fer-ho.
+
+![alt text](sambaimg/2026-02-14_18-12.png)
+
+### Integració OpenLDAP
+
+Primerament començarem descarregant el paquet.
+
+![alt text](sambaimg/2026-02-14_18-16.png)
+
+Ara passem a la configuració, primer de tot hem d'editar el **/etc/samba/smb.conf** i afegir el següent:
+
+``` bash
+# per indicar a on buscar les contrasenyes
+passdb backend = ldapsam:ldap://10.0.2.7 
+
+# Aqui l'informació del domini ldap 'eros.cat'
+ldap suffix = dc=eros,dc=cat
+
+ldap admin dn = cn=admin,dc=eros,dc=cat
+# Sense SSL  perque ho vaig configurar així
+ldap ssl = no
+
+# I que sincronitzi les contrasenyes
+ldap passwd sync = yes
+```
+
+![alt text](sambaimg/2026-02-14_18-23.png)
+
+Ara a l'usuari alumne l'hi he posat contrasenya amb smbpasswd.
+
+![alt text](sambaimg/2026-02-14_18-25.png)
+
+I finalment reiniciem el servei. (El primer cop tarda una mica ja que esta interactuant amb el LDAP)
+
+També hem d'executar la comanda
+
+``` bash
+sudo ldapadd -Q -Y EXTERNAL -H ldapi:/// -f /usr/share/doc/samba/examples/LDAP/samba.ldif
+```
+
+Per a que OpenLDAP es pugui utilitzar com a backend per a Samba, el DIT haurà d'utilitzar atributs que puguin descriure correctament les dades de Samba. Aquests atributs es poden obtenir introduint un esquema LDAP de Samba.
+
+L'esquema es troba al paquet Samba ara instal·lat i ja està en format LDIF. El podem importar amb una simple ordre:
+
+![alt text](sambaimg/2026-02-14_18-28.png)
+
+### Proves client via CLI
+
+#### User Enric
+
+![alt text](sambaimg/2026-02-14_18-40.png)
+
+#### User Marc
+
+![alt text](sambaimg/2026-02-14_18-41.png)
+
 ## NFS
 
 Es un protocol que ens permet compartir fitxers, directoris (no impressores) a traves de una xarxa local. L'autenticació es fa a través de host no usuari, a diferència de samba. Poden accedir tants clients Windows com Linux.
@@ -666,4 +727,76 @@ Finalment, podem reiniciar el client o fer un `mount -a` per comprovar que el re
 
 ![Verificació final fstab](nfs/2026-02-10_13-39.png)
 
-Conectar desde Windows
+### NFS amb LDAP
+
+Primerament al nostre servidor prepararem el directori.
+
+![alt text](nfs/2026-02-10_13-51.png)
+
+I tal com hem fet anteriorment ficarem aquesta ruta **/homes** al **/etc/exports**.
+
+![alt text](nfs/2026-02-10_13-53.png)
+
+Un cop fet reiniciem el servei.
+
+![alt text](nfs/2026-02-10_13-56.png)
+
+Ara anirem al nostre client i farem el següent:
+
+![alt text](nfs/2026-02-10_13-57_1.png)
+
+Al fstab ficarem aquesta línia tal i com hem fet anteriorment.
+
+![alt text](image-1.png)
+
+Guardem i tornem a la part del servidor, ara crearem l'usuari Marcel. MOLT IMPORTANT INDICA EL SEU HOME amb aquest cas **/homes**
+
+![alt text](nfs/2026-02-10_14-01.png)
+
+I amb ldapadd l'afegim.
+
+![alt text](nfs/2026-02-10_14-02.png)
+
+Un cop fet aquesta gestió per part del client i el servidor, reiniciarem el client i entrarem com a l'usuari marcel. Si tot ha funcionat correctament dins de **/homes/marcel** hauriem de veure les carpetes basiques com ara **Descargas**, **Documentos** etc...
+
+I si.
+
+![alt text](nfs/2026-02-14_19-28.png)
+
+![alt text](nfs/2026-02-14_19-28_1.png)
+
+### NFS amb Windows
+
+Primer de tot hem de anar **programas i caracterísiticas** i instal·lar el següent paquet.
+
+![alt text](nfs/2026-02-14_19-32.png)
+
+Ara busquem **nfs** i entrem.
+
+![alt text](nfs/2026-02-14_19-33.png)
+
+Ara tornem al servidor, ja que per fer aquesta prova crearé una nova carpeta.
+
+![alt text](nfs/2026-02-14_19-37.png)
+
+I el ficaré al **/etc/exports**.
+
+![alt text](nfs/2026-02-14_19-37_1.png)
+
+Seguidament reiniciem el servei.
+
+![alt text](nfs/2026-02-14_19-38.png)
+
+Ara passem a la part del client i obrirem una powershell com Administrador i executarem la següent comanda:
+
+![alt text](nfs/2026-02-14_19-48.png)
+
+Ara per visualitzar el share aquest hem d'anar al nostre explorador d'arxius i ja apareixerà.
+
+![alt text](nfs/2026-02-14_19-49.png)
+
+![alt text](nfs/2026-02-14_19-50.png)
+
+## END
+
+![alt text](theend.jpg)
