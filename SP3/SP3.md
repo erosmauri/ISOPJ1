@@ -576,7 +576,7 @@ ldapmodify -x -D "cn=admin,dc=eros,dc=cat" -W -f modify_user_all.ldif
 
 ### Tal i com planteja la activitat: Tots els exercicis en captures de pantalla i amb la comanda per tal de poder fer un copia/pegar
 
-## Configuració Samba
+## Servidor SAMBA
 
 Finalment, configurarem Samba per permetre l'accés a recursos compartits amb autenticació LDAP o local.
 
