@@ -107,4 +107,46 @@ Filtrem tots els missatges de la facility `mail` amb `journalctl --facility=mail
 
 ---
 
-*[Creative Commons BY-NC-SA 4.0 ES](https://creativecommons.org/licenses/by/4.0/deed.ca)*
+### Exercici 2: Enviar logs remotament a una altra màquina
+
+En aquest exercici configurem dues màquines:
+- **ferranserver** (IP 10.0.2.15) → actua com a **servidor** de logs (rep els logs)
+- **ferranbernis1-VirtualBox** → actua com a **client** (envia els logs)
+
+#### Configuració del servidor (ferranserver)
+
+Al servidor creem `/etc/rsyslog.d/10-remote.conf` per habilitar la recepció de logs per UDP i TCP al port 514 i desar-los a `/var/log/remote/<hostname>/syslog.log`:
+
+![cat /etc/rsyslog.d/10-remote.conf](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-38-21.png)
+
+Comprovem que rsyslog escolta al port 514 tant per UDP com per TCP amb `ss -tulpn | grep 514`:
+
+![ss -tulpn | grep 514](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-39-17.png)
+
+#### Configuració del client (ferranbernis1-VirtualBox)
+
+Al client creem `/etc/rsyslog.d/90-forward.conf` amb la directiva `*.* @@10.0.2.15:514` per reenviar tots els logs al servidor via TCP:
+
+![cat /etc/rsyslog.d/90-forward.conf](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-38-53.png)
+
+#### Prova: enviar un log des del client
+
+Des del client enviem un missatge de prova amb `logger "PROVA"`:
+
+![logger "PROVA" des del client](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-39-38.png)
+
+#### Verificació al servidor
+
+Al servidor comprovem que s'ha creat la carpeta remota per a cada màquina client dins de `/var/log/remote/`:
+
+![ls -la /var/log/remote](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-39-57.png)
+
+Dins de la carpeta del client (`ferranbernis1-VirtualBox`) hi ha el fitxer `syslog.log` amb els logs rebuts:
+
+![ls -la /var/log/remote/ferranbernis1-VirtualBox](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-40-17.png)
+
+Finalment, visualitzem el contingut del `syslog.log` remot i confirmem que el missatge "PROVA" enviat pel client ha arribat correctament al servidor:
+
+![cat syslog.log - missatge PROVA rebut](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-40-40.png)
+
+---
