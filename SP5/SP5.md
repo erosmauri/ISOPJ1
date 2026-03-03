@@ -121,7 +121,7 @@ Al servidor creem `/etc/rsyslog.d/10-remote.conf` per habilitar la recepció de 
 
 Comprovem que rsyslog escolta al port 514 tant per UDP com per TCP amb `ss -tulpn | grep 514`:
 
-![ss -tulpn | grep 514](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-39-17.png)
+![alt text](<Exercici2/Captura de pantalla de 2026-03-03 13-39-17.png>)
 
 #### Configuració del client (ferranbernis1-VirtualBox)
 
