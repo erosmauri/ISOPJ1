@@ -150,3 +150,76 @@ Finalment, visualitzem el contingut del `syslog.log` remot i confirmem que el mi
 ![cat syslog.log - missatge PROVA rebut](Exercici2/Captura%20de%20pantalla%20de%202026-03-03%2013-40-40.png)
 
 ---
+
+## Servidor de actualitzacions
+
+### Per què és recomanable tenir un servidor d'actualitzacions
+
+- Centralitza totes les actualitzacions de la xarxa, permetent controlar quines es fan i quan.  
+- Evita errors i problemes d’incompatibilitat entre equips.  
+- Estalvia ample de banda, ja que cada actualització es baixa només una vegada al servidor local.  
+- Millora la seguretat mantenint tots els dispositius amb els últims parches.  
+- Facilita la gestió i els informes sobre l’estat de les actualitzacions.  
+- Redueix la feina administrativa automatitzant el procés i estalviant temps.
+
+### Paquet instal·lat a classe
+
+El paquet escollit és **apt-mirror**, que permet crear un mirall local dels repositoris d'Ubuntu (i d'altres) per distribuir actualitzacions i paquets a tots els clients de la xarxa sense que cada equip hagi de descarregar-los d'Internet.
+
+Per exposar el mirall als clients s'utilitza **Apache2** com a servidor web HTTP.
+
+#### Instal·lació d'Apache2
+
+Primer instal·lem el servidor web Apache2, que servirà els paquets als clients via HTTP:
+
+![apt install apache2](ServidorActualitzacionsInstalatAClasse/1.png)
+
+#### Instal·lació d'apt-mirror
+
+A continuació instal·lem el paquet `apt-mirror`, que s'encarregarà de descarregar i mantenir una còpia local dels repositoris configurats:
+
+![apt install apt-mirror](ServidorActualitzacionsInstalatAClasse/2.png)
+
+#### Configuració del fitxer `/etc/apt/mirror.list`
+
+Editem `/etc/apt/mirror.list` per indicar quins repositoris volem replicar. En aquest cas configurem els repositoris principals d'Ubuntu Jammy (jammy, jammy-security, jammy-updates) i també el repositori de Google Chrome:
+
+![nano /etc/apt/mirror.list](ServidorActualitzacionsInstalatAClasse/3.png)
+
+#### Execució d'apt-mirror
+
+Executem la comanda `apt-mirror` per iniciar la descàrrega dels paquets configurats. El procés descarrega els índexs i després els arxius (en aquest cas 477,9 MiB de paquets):
+
+![apt-mirror en execució](ServidorActualitzacionsInstalatAClasse/4.png)
+
+#### Creació del enllaç simbòlic a Apache2
+
+Un cop descarregats els paquets, creem un enllaç simbòlic (`ln -s`) des del directori on apt-mirror desa els fitxers (`/var/spool/apt-mirror/mirror/dl.google.com/`) fins a `/var/www/html/`, perquè Apache els pugui servir als clients:
+
+![ln -s i ls /var/www/html](ServidorActualitzacionsInstalatAClasse/5.png)
+
+#### Configuració del client: `/etc/apt/sources.list`
+
+Al client editem el fitxer `/etc/apt/sources.list` per apuntar al servidor mirror local (`http://10.0.2.13`) en lloc dels repositoris originals d'Internet. Així totes les actualitzacions es descarregaran des del servidor intern:
+
+![nano /etc/apt/sources.list al client](ServidorActualitzacionsInstalatAClasse/6.png)
+
+#### Afegir la clau GPG de Google al client
+
+Per poder instal·lar paquets del repositori de Google des del mirror local, cal afegir la seva clau de signatura GPG amb `wget` i `apt-key add`:
+
+![wget clau GPG Google + apt-key add](ServidorActualitzacionsInstalatAClasse/7.png)
+
+#### Actualització del client (`apt update`)
+
+Executem `apt update` al client per actualitzar la llista de paquets disponibles. Es pot veure com els repositoris ara s'obtenen des del servidor intern (`http://10.0.2.13`) en lloc d'Internet:
+
+![apt update - repositoris des del servidor intern](ServidorActualitzacionsInstalatAClasse/8.png)
+
+#### Instal·lació de Google Chrome des del mirror local
+
+Finalment instal·lem `google-chrome-stable` des del client. El paquet es descarrega des del servidor mirror intern (`http://10.0.2.13/dl.google.com/...`), demostrant que el servidor d'actualitzacions funciona correctament:
+
+![apt install google-chrome-stable des del mirror local](ServidorActualitzacionsInstalatAClasse/9.png)
+
+### Activitat individual
