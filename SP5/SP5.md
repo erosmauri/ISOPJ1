@@ -223,3 +223,47 @@ Finalment instal·lem `google-chrome-stable` des del client. El paquet es descar
 ![apt install google-chrome-stable des del mirror local](ServidorActualitzacionsInstalatAClasse/9.png)
 
 ### Activitat individual
+
+Per a l'activitat individual s'ha configurat un segon repositori mirror: el repositori oficial de **nginx**. Es tracta d'un repositori lleuger (menys paquets que Ubuntu sencer) i ideal per demostrar el funcionament del servidor d'actualitzacions amb un repositori diferent.
+
+#### Configuració del `mirror.list` amb nginx
+
+Afegim al fitxer `/etc/apt/mirror.list` la línia del repositori oficial de nginx (`http://nginx.org/packages/ubuntu jammy nginx`), a més del repositori de Google Chrome que ja teníem configurat anteriorment:
+
+![nano /etc/apt/mirror.list amb nginx afegit](ServidorActualitzacionsActivitatIndividual/1.png)
+
+#### Execució d'apt-mirror
+
+Executem `apt-mirror` per descarregar els índexs i paquets del repositori de nginx. El procés indica que es descarregaran **1,2 GiB** de paquets al servidor local:
+
+![apt-mirror descarregant el repositori de nginx](ServidorActualitzacionsActivitatIndividual/2.png)
+
+#### Creació de l'enllaç simbòlic a Apache2
+
+Un cop descarregats els paquets de nginx, creem un nou enllanç simbòlic (`ln -s`) des de `/var/spool/apt-mirror/mirror/nginx.org/` fins a `/var/www/html/`, perquè Apache pugui servir-los als clients. Verifiquem amb `ls` que ara hi ha dos directoris al servidor web: `dl.google.com` i `nginx.org`:
+
+![ln -s i ls /var/www/html amb nginx.org](ServidorActualitzacionsActivitatIndividual/3.png)
+
+#### Configuració del client: afegir nginx al `sources.list`
+
+Al client editem `/etc/apt/sources.list` i afegim la línia del repositori de nginx apuntant al servidor mirror intern (`http://10.0.2.13/nginx.org/packages/ubuntu jammy nginx`):
+
+![nano /etc/apt/sources.list amb nginx afegit](ServidorActualitzacionsActivitatIndividual/4.png)
+
+#### Afegir la clau GPG de nginx al client
+
+Per poder instal·lar paquets del repositori de nginx sense errors de signatura, cal afegir la clau GPG oficial de nginx al client amb `wget` i `apt-key add`:
+
+![wget clau GPG nginx + apt-key add](ServidorActualitzacionsActivitatIndividual/5.png)
+
+#### Actualització del client (`apt update`)
+
+Executem `apt update` al client. Es pot veure com ara es descarrega el llistat de paquets de nginx directament des del servidor intern (`http://10.0.2.13/nginx.org/packages/ubuntu`), indicant que el mirror local funciona correctament:
+
+![apt update - nginx descarregat des del servidor intern](ServidorActualitzacionsActivitatIndividual/6.png)
+
+#### Instal·lació de nginx des del mirror local
+
+Finalment instal·lem `nginx` des del client. El paquet es descarrega des del servidor mirror intern (`http://10.0.2.13/nginx.org/packages/ubuntu`), confirmant que el servidor d'actualitzacions distribueix correctament el repositori de nginx a la xarxa local:
+
+![apt install nginx des del mirror local](ServidorActualitzacionsActivitatIndividual/7.png)
