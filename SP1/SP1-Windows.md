@@ -394,7 +394,7 @@ description      Windows 11
 
 * Executo `dir` per veure els fitxers i carpetes del directori arrel `C:\`. Es mostren carpetes com `Program Files`, `Users`, `Windows`, etc.
 
-![Pas 29a – dir: llistat de fitxers i carpetes de C:\](imatges-windows/42.png)
+![Pas 29a – dir: llistat de fitxers i carpetes de C:](imatges-windows/42.png)
 
 * Executo `cd Eros` per moure'm a la carpeta de l'usuari, `mkdir prova` per crear una nova carpeta i `echo hola > fitxer.txt` per crear un fitxer de text.
 
