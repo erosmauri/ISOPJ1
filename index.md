@@ -26,3 +26,5 @@ El contenido está bajo licencia [Creative Commons BY-NC-SA 3.0 ES](LICENSE.md).
 ### [A1. Sprint 1: Instal·lació i Configuració Inicial](SP1/SP1-Windows.md)
 ### [A2. Sprint 2: Instal·lació, Configuració de Programari de Base i Gestió de Fitxers](SP2/SP2-Windows.md)
 ### [A3. Sprint 3: Administració de Dominis i Seguretat](SP3/SP3-Windows.md)
+### [A4. Sprint 4: Configuració del Programari de Base i Sistemes d’Emmagatzematge](SP4/SP4-Windows.md)
+### [A5. Sprint 5: Monitoratge, Auditories i Programari Client/Servidor](SP5/SP5-Windows.md)

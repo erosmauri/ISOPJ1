@@ -213,15 +213,3 @@ L'usuari **Astro** inicia sessió correctament al client Windows 11 amb les seve
 ![Pantalla de benvinguda per a l'usuari Astro](imatges-windows/28.png)
 
 ---
-
-## Resum del procés
-
-| Pas | Acció | Resultat |
-|-----|-------|---------|
-| 1 | IP estàtica al servidor | Servidor accessible a `10.0.2.17` |
-| 2 | Instal·lació del rol AD DS | Rol instal·lat correctament |
-| 3 | Promoció a DC | Nou bosc `eros.cat` creat (NetBIOS: `ASTRO`) |
-| 4 | Creació d'usuari de domini | Usuari `astro@eros.cat` creat |
-| 5 | DNS del client → DC | Client pot resoldre `eros.cat` |
-| 6 | Unió al domini | Client unit a `eros.cat` |
-| 7 | Inici de sessió amb AD | `eros.cat\Astro` inicia sessió al client |
