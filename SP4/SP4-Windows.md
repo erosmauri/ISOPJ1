@@ -187,7 +187,7 @@ Obrim l'Explorador d'arxius i podem veure que el nou volum **RAID5-Astro (R:)** 
 
 Entrem a la unitat `R:\` i creem la carpeta **Prova-Raid5Astro** per provar que podem escriure dades al volum RAID 5.
 
-![Carpeta Prova-Raid5Astro creada a R:\](imatges-windows/16.png)
+![Carpeta Prova-Raid5Astro creada a R:\\](imatges-windows/16.png)
 
 ---
 
